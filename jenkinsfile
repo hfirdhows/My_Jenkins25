@@ -1,30 +1,48 @@
-pipeline{
- agent any
-    Stages{
-        stage ('code checkout'){
-            steps{
-                git 'https://github.com/hfirdhows/My_Jenkins25'
-            }
-            }
+pipeline {
+    agent any
 
-        stage ('build'){
-            steps{
-                echo 'images'
-            }
-
-            }
-        stage('test'){
-            steps{
-                echo 'test pass'
-            }
-        } 
-        stage('deploy'){
-            steps{
-                echo 'deploy application'
-            }
-        }   
-
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: 'https://github.com/hfirdhows/My_Jenkins25.git', branch: 'main'
             }
         }
 
-    
+        stage('Build') {
+            steps {
+                echo 'Building the project...'
+                bat 'echo Building project with Windows commands'
+                // Example: bat 'mvn clean install'
+                // Or:     bat 'gradlew.bat build'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Running tests...'
+                bat 'echo Running tests on Windows'
+                // Example: bat 'mvn test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application...'
+                bat 'echo Deploy step on Windows'
+                // Example: bat 'copy target\\myapp.war C:\\deployments\\'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline finished (success or failure)'
+        }
+        success {
+            echo ' Build succeeded!'
+        }
+        failure {
+            echo ' Build failed!'
+        }
+    }
+}
