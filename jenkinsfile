@@ -1,27 +1,32 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('checkout code') {
-            steps{
+
+    stages {
+        stage('Checkout Code') {
+            steps {
                 git url: 'https://github.com/hfirdhows/My_Jenkins25.git', branch: 'main'
-
             }
+        }
 
-        stage('build') {
-            steps{
+        stage('Build') {
+            steps {
                 echo 'Building images'
-            }
-        } 
-        stage('test')  {
-            steps{
-                echo 'test pass'
+                // bat 'mvn clean install'   // for Windows + Maven project
             }
         }
-        stage('deploy') {
-            steps{
-                echo 'application deployed'
+
+        stage('Test') {
+            steps {
+                echo 'Test pass'
+                // bat 'mvn test'
             }
         }
+
+        stage('Deploy') {
+            steps {
+                echo 'Application deployed'
+                // bat 'copy target\\myapp.war C:\\deployments\\'
+            }
         }
     }
 }
