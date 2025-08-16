@@ -5,6 +5,7 @@ pipeline{
             steps{
                 git 'https://github.com/hfirdhows/My_Jenkins25'
             }
+            }
 
         stage ('build'){
             steps{
@@ -26,4 +27,4 @@ pipeline{
             }
         }
 
-    }
+    
