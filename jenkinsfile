@@ -1,0 +1,29 @@
+Pipeline{
+ agent any
+    Stages{
+        stage ('code checkout'){
+            steps{
+                git 'https://github.com/hfirdhows/My_Jenkins25'
+            }
+
+        stage ('build'){
+            steps{
+                echo 'images'
+            }
+
+            }
+        stage('test'){
+            steps{
+                echo 'test pass'
+            }
+        } 
+        stage('deploy'){
+            steps{
+                echo 'deploy application'
+            }
+        }   
+
+            }
+        }
+
+    }
